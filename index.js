@@ -3,6 +3,7 @@ const { json, urlencoded } = require("body-parser");
 const cors = require("cors");
 const session = require("express-session");
 const passport = require("passport");
+const mongoStore = require("connect-mongo");
 
 const passportlocal = require("./src/config/passport_local-S");
 
@@ -32,6 +33,16 @@ app.use(
     cookie: {
       maxAge: 600000,
     },
+    store: new mongoStore({
+      mongoUrl:'mongodb://localhost:27017/Twitter_clone',
+      autoRemove: "disable",
+    }),
+  },function(err){
+    if(err){
+      console.error(err);
+
+    }
+    console.log('connect-mongo setup done');
   })
 );
 
