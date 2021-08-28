@@ -37,6 +37,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 app.use("/", router);
 app.use(express.static(__dirname + "/src/assets"));
